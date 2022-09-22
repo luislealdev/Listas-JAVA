@@ -1,7 +1,7 @@
-public class ListaDinamica {
+public class ListaDinamicaSimple {
     Nodo a_inicio;
 
-    ListaDinamica() {
+    ListaDinamicaSimple() {
         a_inicio = null;
     }
 
@@ -22,19 +22,40 @@ public class ListaDinamica {
         }
     }
 
+    void m_out(int p_dato) {
+        Nodo aux = m_buscarPosicionDetras(p_dato);
+        aux.siguiente = aux.siguiente.siguiente;
+    }
+
     // LISTA DOBLE
     // aux.ant.sig = temp;
     //
 
     Nodo m_buscarPosicion(int p_dato) {
         Nodo aux = a_inicio;
-        // while (p_out >= aux.info) {
-        // aux = aux.siguiente;
-        // }
         while (aux.siguiente != null && aux.siguiente.info <= p_dato) {
             aux = aux.siguiente;
         }
         return aux;
+    }
+
+    Nodo m_buscarPosicionDetras(int p_dato) {
+        Nodo aux = a_inicio;
+        while (aux.siguiente != null && aux.siguiente.info < p_dato) {
+            aux = aux.siguiente;
+        }
+        return aux;
+    }
+
+    void m_imprimirInfo() {
+        Nodo aux = a_inicio;
+        System.out.print("[");
+        while (a_inicio.siguiente != null) {
+            System.out.print(a_inicio.info + "|");
+            a_inicio = a_inicio.siguiente;
+        }
+        System.out.print(a_inicio.info + "]");
+        a_inicio = aux;
     }
 }
 

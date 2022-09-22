@@ -10,11 +10,11 @@
 
 public class Nodo {
     int info;
-    Nodo siguiente, ant;
+    Nodo siguiente, anterior;
 
     Nodo(int p_info) {
         info = p_info;
         siguiente = null;
-        ant=null;
+        anterior=null;
     }
 }
