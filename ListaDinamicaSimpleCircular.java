@@ -9,10 +9,12 @@ public class ListaDinamicaSimpleCircular {
     void m_in(int p_dato) {
         Nodo aux;
         Nodo temp = new Nodo(p_dato);
-        if (a_inicio == null)
-            a_inicio = temp;
-        else {
+        if (a_inicio == null) {
+            a_inicio = a_final = temp;
+            a_inicio.siguiente = a_inicio;
+        } else {
             if (p_dato < a_inicio.info) {
+
                 temp.siguiente = a_inicio;
                 a_inicio = temp;
             } else {

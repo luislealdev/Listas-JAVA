@@ -13,21 +13,27 @@ public class ListaDinamicaSimpleDoble {
         else {
             if (p_dato < a_inicio.info) {
                 temp.siguiente = a_inicio;
-                a_inicio.anterior = temp; // DUDA
                 a_inicio = temp;
+                temp.siguiente.anterior = a_inicio;
             } else {
                 aux = m_buscarPosicion(p_dato);
-                temp.siguiente = aux.siguiente;
-                aux.anterior = temp; // DUDA
-                aux.siguiente = temp;
+                if (aux.siguiente == null) {
+                    aux.siguiente = temp;
+                    aux.siguiente.anterior = aux;
+                } else {
+                    temp.siguiente = aux.siguiente;
+                    temp.siguiente.anterior = temp;
+                    temp.anterior = aux;
+                    aux.siguiente = temp;
+                }
             }
         }
     }
 
     void m_out(int p_dato) {
-        Nodo aux = m_buscarPosicionDetras(p_dato);
-        aux.siguiente = aux.siguiente.siguiente;
-        aux.siguiente.siguiente.anterior = aux;
+        Nodo aux = m_buscarPosicion(p_dato);
+        aux.anterior.siguiente = aux.siguiente;
+        aux.siguiente.anterior = aux.anterior;
     }
 
     Nodo m_buscarPosicion(int p_dato) {
@@ -38,13 +44,13 @@ public class ListaDinamicaSimpleDoble {
         return aux;
     }
 
-    Nodo m_buscarPosicionDetras(int p_dato) {
-        Nodo aux = a_inicio;
-        while (aux.siguiente != null && aux.siguiente.info < p_dato) {
-            aux = aux.siguiente;
-        }
-        return aux;
-    }
+    // Nodo m_buscarPosicionDetras(int p_dato) {
+    // Nodo aux = a_inicio;
+    // while (aux.siguiente != null && aux.siguiente.info < p_dato) {
+    // aux = aux.siguiente;
+    // }
+    // return aux;
+    // }
 
     void m_imprimirInfo() {
         Nodo aux = a_inicio;
