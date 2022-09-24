@@ -14,23 +14,18 @@ public class ListaDinamicaSimpleCircular {
             a_inicio.siguiente = a_inicio;
         } else {
             if (p_dato < a_inicio.info) {
-
                 temp.siguiente = a_inicio;
                 a_inicio = temp;
+                a_final.siguiente = a_inicio;
             } else {
                 aux = m_buscarPosicion(p_dato);
-                temp.siguiente = aux.siguiente;
+                a_final=temp;
+                temp.siguiente = a_inicio;
                 aux.siguiente = temp;
             }
         }
 
     }
-
-    void m_out(int p_dato) {
-        Nodo aux = m_buscarPosicionDetras(p_dato);
-        aux.siguiente = aux.siguiente.siguiente;
-    }
-
     Nodo m_buscarPosicion(int p_dato) {
         Nodo aux = a_inicio;
         while (aux.siguiente != null && aux.siguiente.info <= p_dato) {
