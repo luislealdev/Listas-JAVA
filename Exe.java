@@ -56,9 +56,11 @@ public class Exe {
         // System.out.println(ldsd.m_buscarPosicion(7).anterior.info);
 
         // ----------------LISTA DINÁMICA SIMPLE CIRCULAR-------------------
+
         ListaDinamicaSimpleCircular ldsc = new ListaDinamicaSimpleCircular();
         ldsc.m_in(1);
         ldsc.m_in(4);
+        ldsc.m_imprimirInfo();
         ldsc.m_in(6);
         ldsc.m_in(5);
         ldsc.m_in(3);
@@ -66,7 +68,8 @@ public class Exe {
         ldsc.m_in(7);
         ldsc.m_imprimirInfo();
 
-        System.out.println("\n" + ldsc.m_buscarPosicion(7).siguiente);
+        // Comprobar que si está enlazado el final con el inicio
+        System.out.println("\n" + ldsc.m_buscarPosicion(7).siguiente.info);
 
     }
 }

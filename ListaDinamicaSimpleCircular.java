@@ -19,25 +19,19 @@ public class ListaDinamicaSimpleCircular {
                 a_final.siguiente = a_inicio;
             } else {
                 aux = m_buscarPosicion(p_dato);
-                a_final=temp;
+                a_final = temp;
                 temp.siguiente = a_inicio;
                 aux.siguiente = temp;
             }
         }
-
     }
+
     Nodo m_buscarPosicion(int p_dato) {
         Nodo aux = a_inicio;
-        while (aux.siguiente != null && aux.siguiente.info <= p_dato) {
-            aux = aux.siguiente;
-        }
-        return aux;
-    }
-
-    Nodo m_buscarPosicionDetras(int p_dato) {
-        Nodo aux = a_inicio;
-        while (aux.siguiente != null && aux.siguiente.info < p_dato) {
-            aux = aux.siguiente;
+        if (aux != a_final) {
+            while (aux.siguiente.info <= p_dato && aux.siguiente != a_inicio) {
+                aux = aux.siguiente;
+            }
         }
         return aux;
     }
@@ -45,7 +39,7 @@ public class ListaDinamicaSimpleCircular {
     void m_imprimirInfo() {
         Nodo aux = a_inicio;
         System.out.print("[");
-        while (a_inicio.siguiente != null) {
+        while (a_inicio.siguiente != null && a_inicio != a_final) {
             System.out.print(a_inicio.info + "|");
             a_inicio = a_inicio.siguiente;
         }
